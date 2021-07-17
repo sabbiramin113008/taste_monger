@@ -15,7 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+from menu_app.ApiViews.CustomAuthApi import EmployeeRegister
+from menu_app.ApiViews.RestaurantApi import RestaurantApi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Auth APIs
+    path('api/v1/auth/register/', EmployeeRegister.as_view(), name='Register'),
+    path('api/v1/auth/token/', TokenObtainPairView.as_view(), name='Get JWT Token'),
+    path('api/v1/auth/token/refresh/', TokenRefreshView.as_view(), name='Get JWT Refresh Token'),
+
+    # Restaurant APIs
+    path('api/v1/restaurant/', RestaurantApi.as_view(), name='Create Restaurant'),
+
 ]
