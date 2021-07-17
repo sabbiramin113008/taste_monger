@@ -18,6 +18,7 @@ from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from menu_app.ApiViews.CustomAuthApi import EmployeeRegister
+from menu_app.ApiViews.ItemApi import ItemApi
 from menu_app.ApiViews.RestaurantApi import RestaurantApi
 
 urlpatterns = [
@@ -28,6 +29,9 @@ urlpatterns = [
     path('api/v1/auth/token/refresh/', TokenRefreshView.as_view(), name='Get JWT Refresh Token'),
 
     # Restaurant APIs
-    path('api/v1/restaurant/', RestaurantApi.as_view(), name='Create Restaurant'),
+    path('api/v1/restaurant/', RestaurantApi.as_view(), name='Restaurant APIs'),
+
+    # Items APIs
+    path('api/v1/item/', ItemApi.as_view(), name='Items APIs'),
 
 ]

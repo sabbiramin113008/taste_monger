@@ -10,24 +10,28 @@ from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from menu_app.models import Restaurant
-from menu_app.serializers import RestaurantSerializer
+from menu_app.models import Item
+from menu_app.serializers import ItemSerializer
 
 
-class RestaurantApi(APIView):
+class ItemApi(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
         data = request.data
         response = dict()
         try:
-            restaurant = Restaurant.objects.create(name=data.get('name'))
-            restaurant.save()
+            item = Item.objects.create(
+                name=data.get('name'),
+                ingredients=data.get('ingredients'),
+                item_type=data.get('item_type')
+            )
+            item.save()
             response['status'] = 'created'
-            response['model'] = RestaurantSerializer(restaurant).data
+            response['model'] = ItemSerializer(item).data
             return Response(response)
+
         except Exception as e:
             print('Error Creating Restaurant:', e)
             response['status'] = 'Error'
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
-
