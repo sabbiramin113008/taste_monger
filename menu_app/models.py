@@ -8,6 +8,7 @@ email: sabbiramin.cse11ruet@gmail.com, sabbir@rokomari.com
 """
 import datetime
 
+from django.utils.timezone import now
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.datetime_safe import date
@@ -46,7 +47,7 @@ class Menu(models.Model):
     name = models.CharField(null=False, max_length=50)
     ingredients = models.TextField(null=False, default='')
     item_type = models.CharField(null=False, max_length=50, choices=food_type, default='MAIN_DISH')
-    c_date = models.DateField(default=datetime.date.today())  # Todo:// Need to restrict editing any past menuItem
+    c_date = models.DateField(default=now)  # Todo:// Need to restrict editing any past menuItem
     vote_count = models.IntegerField(default=0)
 
     def __str__(self):
