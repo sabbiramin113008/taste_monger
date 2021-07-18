@@ -64,9 +64,9 @@ There are several custom commands for easily populating the database. All associ
 - `Admin Panel` - is made up of `Django Admin Panel`.
 - `Application API Server` - API server for REST interface and REST Integration. `JWT` has been used for authorized API
   calls for endpoints.
-- `Cronjobs` - Cron job is added so as to update the leaderboard by the end of the Day.
+- `Cronjobs` - Cron job is added to update the leaderboard by the end of the Day.
     - `Update the Leaderboard` - Though Leaderboard is updated after every leaderboard API call, but to set it finally,
-      A cronjob is added for automatic Leadeboard update.
+      A cronjob is added for automatic Leaderboard update.
 
 ## Milestones Status
 
