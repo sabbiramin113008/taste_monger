@@ -22,13 +22,11 @@ def leaderboard_generation_task():
         try:
             l = Leaderboard.objects.filter(restaurant=r, c_date=yesterday.date()).first()
         except Exception as e:
-            print('Error Getting yesterday :', e)
             l = None
         try:
             ll = Leaderboard.objects.filter(restaurant=r, c_date=day_before_yesterday.date()).first()
         except Exception as e:
             ll = None
-            print('Error Getting yes-1 day:', e)
 
         if l and ll:
             continue
