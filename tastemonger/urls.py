@@ -21,6 +21,7 @@ from menu_app.ApiViews.CustomAuthApi import EmployeeRegister
 from menu_app.ApiViews.ItemApi import ItemApi
 from menu_app.ApiViews.MenuApi import MenuApi
 from menu_app.ApiViews.RestaurantApi import RestaurantApi
+from menu_app.ApiViews.VoteApi import VoteApi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,6 +37,9 @@ urlpatterns = [
     path('api/v1/item/', ItemApi.as_view(), name='Items APIs'),
 
     # Menu APIs
-    path('api/v1/menu/', MenuApi.as_view(), name='Items APIs'),
+    path('api/v1/menu/', MenuApi.as_view(), name='Menu APIs'),
+
+    # Voting APIs
+    path('api/v1/vote/', VoteApi.as_view(), name='Voting APIs'),
 
 ]
