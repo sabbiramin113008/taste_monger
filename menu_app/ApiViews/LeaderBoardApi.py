@@ -40,8 +40,13 @@ class LeaderBoard(APIView):
 
             if l and ll:
                 continue
-            nl, _ = Leaderboard.objects.get_or_create(c_date=today, restaurant=r)
-            nl.save()
+            try:
+                nl = Leaderboard.objects.get(c_date=today)
+                nl.restaurant = r
+                nl.save()
+            except:
+                nl = Leaderboard.objects.create(c_date=today, restaurant=r)
+                nl.save()
             model = {
                 'id': nl.id,
                 'restaurent': RestaurantSerializer(r).data,
