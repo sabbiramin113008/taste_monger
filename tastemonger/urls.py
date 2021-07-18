@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from menu_app.ApiViews.LeaderBoardApi import LeaderBoard
 from menu_app.ApiViews.CustomAuthApi import EmployeeRegister
 from menu_app.ApiViews.ItemApi import ItemApi
 from menu_app.ApiViews.MenuApi import MenuApi
@@ -41,5 +42,8 @@ urlpatterns = [
 
     # Voting APIs
     path('api/v1/vote/', VoteApi.as_view(), name='Voting APIs'),
+
+    # Leaderboard APIs
+    path('api/v1/leaderboard/', LeaderBoard.as_view(), name='LeaderBoard APIs'),
 
 ]

@@ -62,3 +62,12 @@ class Vote(models.Model):
 
     def __str__(self):
         return '{} - liked - {}'.format(self.user.username, self.menu)
+
+
+class Leaderboard(models.Model):
+    c_date = models.DateField(null=False)
+    restaurant = models.ForeignKey(Restaurant, related_name='leaderboardrestaurant', null=False,
+                                   on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.restaurant.name
