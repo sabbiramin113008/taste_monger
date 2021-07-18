@@ -19,6 +19,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from menu_app.ApiViews.CustomAuthApi import EmployeeRegister
 from menu_app.ApiViews.ItemApi import ItemApi
+from menu_app.ApiViews.MenuApi import MenuApi
 from menu_app.ApiViews.RestaurantApi import RestaurantApi
 
 urlpatterns = [
@@ -33,5 +34,8 @@ urlpatterns = [
 
     # Items APIs
     path('api/v1/item/', ItemApi.as_view(), name='Items APIs'),
+
+    # Menu APIs
+    path('api/v1/menu/', MenuApi.as_view(), name='Items APIs'),
 
 ]

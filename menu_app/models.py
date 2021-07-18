@@ -10,6 +10,7 @@ import datetime
 
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils.datetime_safe import date
 
 UserModel = get_user_model()
 
@@ -32,7 +33,7 @@ food_type = [
 
 
 class Item(models.Model):
-    name = models.CharField(null=False, unique=True, max_length=50)
+    name = models.CharField(null=False, max_length=50)
     ingredients = models.TextField(null=False, default='')
     item_type = models.CharField(null=False, max_length=50, choices=food_type, default='MAIN_DISH')
 
@@ -42,12 +43,14 @@ class Item(models.Model):
 
 class Menu(models.Model):
     restaurant = models.ForeignKey(Restaurant, related_name='restaurant', null=False, on_delete=models.CASCADE)
-    item = models.ForeignKey(Item, related_name='item', null=False, on_delete=models.CASCADE)
-    c_date = models.DateField(default=datetime.date)  # Todo:// Need to restrict editing any past menuItem
+    name = models.CharField(null=False, max_length=50)
+    ingredients = models.TextField(null=False, default='')
+    item_type = models.CharField(null=False, max_length=50, choices=food_type, default='MAIN_DISH')
+    c_date = models.DateField(default=datetime.date.today())  # Todo:// Need to restrict editing any past menuItem
     vote_count = models.IntegerField(default=0)
 
     def __str__(self):
-        return '{} from {}'.format(self.item, self.restaurant)
+        return '{} from {}'.format(self.name, self.restaurant)
 
 
 class Vote(models.Model):

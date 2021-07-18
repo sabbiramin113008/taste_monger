@@ -8,7 +8,7 @@ email: sabbiramin.cse11ruet@gmail.com, sabbir@rokomari.com
 """
 from rest_framework import serializers
 
-from menu_app.models import Restaurant, Item
+from menu_app.models import Restaurant, Item, Menu
 
 
 class RestaurantSerializer(serializers.ModelSerializer):
@@ -21,3 +21,11 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ['id', 'name', 'ingredients', 'item_type']
+
+
+class MenuSerializer(serializers.ModelSerializer):
+    restaurant = RestaurantSerializer()
+
+    class Meta:
+        model = Menu
+        fields = ['id', 'restaurant', 'name', 'ingredients', 'item_type']
